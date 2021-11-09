@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <context id="DB2Tables" targetRuntime="MyBatis3">
+        <!-- 自定义的注释规则，继承 DefaultCommentGenerator 重写 一些方法 -->
+        <commentGenerator>
+            <!-- 是否去除自动生成日期的注释-->
+            <property name="suppressDate" value="true"/>
+            <!-- 是否去除所有自动生成的注释-->
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+        <!--配置数据库连接信息-->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/ssm_crud?useSSL=false"
+                        userId="root"
+                        password="hrj">
+        </jdbcConnection>
+        <!--生成entity类存放位置-->
+        <javaModelGenerator targetPackage="com.jun.bean"
+                            targetProject="./src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+        <!--生成sql映射文件存放位置-->
+        <sqlMapGenerator targetPackage="com.jun.mapper"
+                         targetProject="./src/main/resources">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+        <!--生成Dao接口类存放位置-->
+        <javaClientGenerator type="XMLMAPPER"
+                             targetPackage="com.jun.dao"
+                             targetProject="./src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+        <!--table指定每个表的生成策略:domainObjectName=生成实体的类名-->
+        <table tableName="t_emp" domainObjectName="Employee"></table>
+        <table tableName="t_dep" domainObjectName="Department"></table>
+    </context>
+</generatorConfiguration>
